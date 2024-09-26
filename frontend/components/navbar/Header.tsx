@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import Navbar from './Navbar'
 import { Button } from '../ui/button'
+import Image from 'next/image'
 
 
 
@@ -11,8 +12,8 @@ const Header = () => {
         <div className='container mx-auto flex justify-between items-center'>
             {/* Logo */}
             <Link href='/'>
-                <h1 className='text-2xl fonet-semibold'>
-                    Logo
+                <h1 className=''>
+                    <Image src="/logo.png" alt="logo" width={90} height={90} />
                 </h1>
             </Link>
             <div className="flex items-center gap-8">
