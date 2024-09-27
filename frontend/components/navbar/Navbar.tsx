@@ -15,12 +15,16 @@ const links=[
         path:'/marketplace',
     },
     {
-        name:'profile',
-        path:'/profile',
-    },
-    {
         name:'sell',
         path:'/sell',
+    },
+    {
+        name:'why',
+        path:'/why',
+    },
+    {
+        name:'profile',
+        path:'/profile',
     },
 ]
 
