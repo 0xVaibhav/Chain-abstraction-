@@ -1,5 +1,5 @@
 import Photo from "@/components/animation/Photo";
-import Socials from "@/components/Socials";
+import Socials from "@/components/footer/Socials";
 import { FiDownload } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -29,7 +29,7 @@ export default function Home() {
                 <Link href="/marketplace">Marketplace </Link>
               </Button>
               <Button >
-                <Link href="/marketplace">Sell Goods</Link>
+                <Link href="/sell">Sell Goods</Link>
               </Button>
             </div>
           </div>
