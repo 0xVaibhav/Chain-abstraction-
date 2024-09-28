@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { HiCamera } from "react-icons/hi";
+import { Button } from "./ui/button";
 
 const Modal = () => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -16,10 +17,14 @@ const Modal = () => {
     if (file) {
       // Generate image preview URL
       const imagePreviewUrl = URL.createObjectURL(file);
-      
+
       // Add the new image URL to the images array
       setImages((prevImages) => [...prevImages, imagePreviewUrl]);
     }
+  };
+
+  const deleteImage = (index: number) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
   return (
@@ -28,14 +33,21 @@ const Modal = () => {
         {images.length > 0 ? (
           <div className="flex flex-col gap-2">
             <div className=" h-full w-full m-2 p-2 cursor-pointer object-cover">
-              <div className="grid grid-cols-2 gap-2">
+              <div className="flex flex-row gap-2">
                 {images.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Uploaded preview ${index + 1}`}
-                    className="w-24 h-24 object-cover rounded"
-                  />
+                  <div>
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`Uploaded preview ${index + 1}`}
+                      className="w-24 h-24 object-cover rounded"
+                    />
+                    {index === images.length - 1 && (
+                      <Button onClick={() => deleteImage(index)}>
+                        Delete Image
+                      </Button>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
