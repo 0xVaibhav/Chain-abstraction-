@@ -1,14 +1,13 @@
 import Photo from "@/components/animation/Photo";
-import Socials from "@/components/footer/Socials";
-import { FiDownload } from "react-icons/fi";
+import Footer from "@/components/footer/Footer";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="h-full ">
-      <div className="container mx-auto h-full">
-        <div className="flex flex-row items-center justify-between pt-8 pb-24">
+    <section className="">
+      <div className="container mx-auto mb-16 ">
+        <div className="flex flex-row items-center justify-between pt-8 pb-24 h-full">
           {/* text */}
           <div className="text-left ">
             <h1 className="h1 mb-6 text-accent">
@@ -39,6 +38,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+        <footer>
+          <Footer />
+        </footer>
     </section>
   );
 }
