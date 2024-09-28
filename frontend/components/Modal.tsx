@@ -1,43 +1,46 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { HiCamera } from "react-icons/hi";
-
 
 const Modal = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const filePickerRef = useRef<HTMLInputElement | null>(null);
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [imageUrl, setImageUrl] = useState("");
+  // Manage the array of image URLs
+  const [images, setImages] = useState<string[]>([]);
 
   const addImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
     if (file) {
-      setSelectedFile(file);
+      // Generate image preview URL
       const imagePreviewUrl = URL.createObjectURL(file);
-      setImageUrl(imagePreviewUrl);
+      
+      // Add the new image URL to the images array
+      setImages((prevImages) => [...prevImages, imagePreviewUrl]);
     }
   };
 
   return (
     <div className="w-full h-full ">
       <div ref={modalRef} className="">
-        {selectedFile ? (
-          <div className="flex flex-row">
+        {images.length > 0 ? (
+          <div className="flex flex-col gap-2">
             <div className=" h-full w-full m-2 p-2 cursor-pointer object-cover">
-              <img
-                className="border border-accent rounded-lg p-2"
-                src={imageUrl}
-                alt="selected file"
-                onClick={() => setSelectedFile(null)}
-                height={100}
-                width={200}
-              />
+              <div className="grid grid-cols-2 gap-2">
+                {images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Uploaded preview ${index + 1}`}
+                    className="w-24 h-24 object-cover rounded"
+                  />
+                ))}
+              </div>
             </div>
             <div
-              className="border h-[150px] w-[50%] border-accent hover:text-accent-hover  bg-transparent text-accent hover:border-accent-hover    cursor-pointer rounded-lg flex justify-center items-center "
+              className="border h-[150px] w-[50%] border-accent hover:text-accent-hover bg-transparent text-accent hover:border-accent-hover cursor-pointer rounded-lg flex justify-center items-center "
               onClick={() => filePickerRef.current?.click()}
             >
               <HiCamera className="text-3xl text-accent-hover cursor-pointer" />
@@ -52,7 +55,7 @@ const Modal = () => {
           </div>
         ) : (
           <div
-            className="border h-[150px] w-full border-accent hover:text-accent-hover  bg-transparent text-accent hover:border-accent-hover    cursor-pointer rounded-lg flex justify-center items-center "
+            className="border h-[150px] w-full border-accent hover:text-accent-hover bg-transparent text-accent hover:border-accent-hover cursor-pointer rounded-lg flex justify-center items-center "
             onClick={() => filePickerRef.current?.click()}
           >
             <HiCamera className="text-3xl text-accent-hover cursor-pointer" />
