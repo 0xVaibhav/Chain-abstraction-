@@ -28,7 +28,7 @@ const Footer = () => {
       <div className="container mx-auto py-10 border-b border-gray-600">
         <div className="flex justify-center">
           <Socials
-            containerStyles="flex justify-center gap-4"
+            containerStyles="flex justify-center gap-[100px]"
             iconStyles="text-2xl text-accent bg-transparent border border-accent p-3 rounded-full hover:text-primary hover:bg-accent transition"
           />
         </div>
